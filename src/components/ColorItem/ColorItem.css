@@ -1,0 +1,30 @@
+.Color-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 50px;
+    border-bottom: 4px solid  #282c34;
+
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.Star-on {
+    font-size: 30px;
+    margin: 0 50px 5px -30px;
+    cursor: pointer;
+    color: orange;
+}
+
+.Star-off {
+    font-size: 30px;
+    margin: 0 50px 5px -30px;
+    cursor: pointer;
+}
+
+.Star-off:hover {
+    color: orange;
+}
+
+.Offset {
+    margin-left: auto;
+}
