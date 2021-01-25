@@ -1,36 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import ColorTable from './components/ColorTable';
 import FileSelect from './components/FileSelect/FileSelect';
 
-class App extends Component {
+import { DebouncedPicker, hexToRgba } from "./components/thirdparty/DebouncedPicker";
 
-  constructor(props) {
-    super(props);
-    this.colorTable = React.createRef(this);
+function App() {
+  const [bytes, setBytes] = useState([]);
+  const [color, setColor] = useState("#ffffff");
+  const [epsilon, setEpsilon] = useState(0);
 
-    this.state = {
-      bytes: []
-    }
-  }
-
-  fileUpdate = (data) => {
-    this.setState({
-      bytes: data
-    });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h1>Color Bytes</h1>
-        </div>
-        <FileSelect parentCallback = {this.fileUpdate} />
-        <ColorTable ref = {this.colorTable} data = {this.state.bytes} />
+  return (
+    <div className="App">
+      <div className="App-header">
+        <h1>Color Bytes</h1>
       </div>
-    );
-  }
+      <FileSelect onChange={setBytes} />
+      <DebouncedPicker value={color} onChange={setColor} />
+      <ColorTable data={bytes} filter={hexToRgba(color)}/>
+    </div>
+  );
 }
 
 export default App;

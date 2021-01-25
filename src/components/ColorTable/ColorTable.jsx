@@ -1,22 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ColorItem from '../../components/ColorItem';
 import './ColorTable.css';
 
-class ColorTable extends Component {
+function ColorTable(props) {
+    let colors = [];
 
-    render() {
-        let colors=[];
-        let data = this.props.data;
-        for(let i = 0; i < data.length; i++) {
-            if(data[i]===255) colors.push(<ColorItem key={i+"#"+data[i-3]+data[i-2]+data[i-1]} red={data[i-3]} green={data[i-2]} blue={data[i-1]} offset={i-3} />);
-        }
+    const calculateRedmean = (r1, g1, b1, r2, g2, b2) => {
+        let avgR = (r1 + r2) / 2;
+        let delta = Math.sqrt( (2 + avgR / 256) * (r2 - r1) + 4 * (g2 - g1) + (2 + (255 - avgR) / 256) * (b2 - b1) );
+        return delta;
+    }
 
-        return (
-            <div className = "Color-table">
-                {colors}
-            </div>
+    for(let i = 0; i < props.data.length-3; i++) {
+        if(Math.abs(calculateRedmean(props.filter.r, props.filter.g, props.filter.b, props.data[i], props.data[i+1], props.data[i-+2])) < 10) colors.push(
+            <ColorItem key={i} red={props.data[i]} green={props.data[i+1]} blue={props.data[i-+2]} offset={i}/>
         );
     }
+
+    return (
+        <div className = "Color-table">
+            {colors}
+        </div>
+    );
 }
 
 export default ColorTable;

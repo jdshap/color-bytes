@@ -8,23 +8,6 @@
     font-size: 20px;
 }
 
-.Star-on {
-    font-size: 30px;
-    margin: 0 50px 5px -30px;
-    cursor: pointer;
-    color: orange;
-}
-
-.Star-off {
-    font-size: 30px;
-    margin: 0 50px 5px -30px;
-    cursor: pointer;
-}
-
-.Star-off:hover {
-    color: orange;
-}
-
 .Offset {
     margin-left: auto;
 }

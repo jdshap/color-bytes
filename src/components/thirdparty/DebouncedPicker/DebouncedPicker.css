@@ -1,0 +1,8 @@
+.Color-Picker {
+    margin: 20px;
+}
+
+.Color-Picker .react-colorful__hue-pointer {
+    width: 16px;
+    border-radius: 3px;
+}
